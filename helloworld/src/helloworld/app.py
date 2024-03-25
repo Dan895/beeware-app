@@ -7,12 +7,15 @@ from toga.style.pack import COLUMN, ROW
 import httpx
 
 
-def gretting(name):
+def greetting(name):
     """
         This is a utility method
     """
     if name:
-        return f"Hello, {name}"
+        if name == "Brutus":
+            return "BeeWare the IDEs of Python!"
+        else:
+            return f"Hello, {name}"
     else:
         return f"Hello, stranger"
 
@@ -72,7 +75,7 @@ class HelloWorld(toga.App):
 
         # this add the greeting method, this was updated in tutorial 7
         # self.main_window.info_dialog(
-        #     gretting(self.name_input.value),
+        #     greetting(self.name_input.value),
         #     "Hi there!",
         # )
 
@@ -98,7 +101,7 @@ class HelloWorld(toga.App):
             payload = response.json()
 
             self.main_window.info_dialog(
-                gretting(self.name_input.value),
+                greetting(self.name_input.value),
                 payload["body"],
             )
 
