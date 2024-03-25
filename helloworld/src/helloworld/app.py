@@ -57,9 +57,10 @@ class HelloWorld(toga.App):
         self.main_window.content = main_box
         self.main_window.show()
 
+    # This function was updated in tutorial 8
     # This defines the method called when
     # the button is pressed
-    def say_hello(self, widget):
+    # def say_hello(self, widget):
         # print(f"Hello, {self.name_input.value}")
 
         # This add a dialog box to interact
@@ -75,8 +76,23 @@ class HelloWorld(toga.App):
         #     "Hi there!",
         # )
 
-        with httpx.Client() as client:
-            response = client.get(
+        # with httpx.Client() as client:
+        #     response = client.get(
+        #         "https://jsonplaceholder.typicode.com/posts/42")
+
+        #     payload = response.json()
+
+        #     self.main_window.info_dialog(
+        #         gretting(self.name_input.value),
+        #         payload["body"],
+        #     )
+
+    # This is the update of tutorial 8
+    # "async" keyword adds functionallity
+    # to avoid the time delay when the button is pressed
+    async def say_hello(self, widget):
+        async with httpx.AsyncClient() as client:
+            response = await client.get(
                 "https://jsonplaceholder.typicode.com/posts/42")
 
             payload = response.json()
